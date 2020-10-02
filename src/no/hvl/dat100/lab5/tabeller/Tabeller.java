@@ -16,14 +16,19 @@ public class Tabeller {
 	// b)
 	public static String tilStreng(int[] tabell) {
 		
-	    System.out.print("[");
-		for (int i = 0 ; i < tabell.length; i++) {
-			
-	    	System.out.print(tabell[i] + ",");
+	    String str = "[";
+	    
+	    for (int i = 0; i < tabell.length; i++) {
+	    	str = str + tabell[i];
+	    	
+	    	if (i <tabell.length - 1) {
+	    		str = str + ",";
+	    	}
 	    }
-		System.out.print("]");
-		
-		return "";
+	    
+	    str = str + "]";
+	    
+	    return str;
 		
 	}
 		
@@ -60,14 +65,21 @@ public class Tabeller {
 	// e)
 	public static int posisjonTall(int[] tabell, int tall) {
 
+		int posisjon = -1;
+		int i =0;
 		
-		
-		if (tabell[0] == tall) {
-			return tabell[0] + tall;
+		while (i <tabell.length && (posisjon ==-1)) {
+			if (tabell[i] == tall) {
+				posisjon = i;
+			}
+			
+			i++;
+			
 		}
-		else {
-			return -1;
-	}
+		
+		return posisjon;
+		
+		
 }
 	// f)
 	public static int[] reverser(int[] tabell) {
@@ -85,15 +97,38 @@ public class Tabeller {
 	// g)
 	public static boolean erSortert(int[] tabell) {
 		
-		// TODO
-	    throw new UnsupportedOperationException("erSortert ikke implementert");
+		int lengde = tabell.length;
+		boolean sortert = true;
+
+		int i = 0;
+		while ((i < lengde - 1) && sortert) {
+
+			if (!(tabell[i] <= tabell[i + 1])) {
+				sortert = false;
+			}
+			i++;
+		}
+
+		return sortert;
 		
 	}
 
 	// h)
 	public static int[] settSammen(int[] tabell1, int[] tabell2) {
 
-		// TODO
-	    throw new UnsupportedOperationException("settSammen ikke implementert");		
+		int lengde1 = tabell1.length;
+		int lengde2 = tabell2.length;
+
+		int[] nytabell = new int[lengde1 + lengde2];
+
+		for (int i = 0; i < lengde1; i++) {
+			nytabell[i] = tabell1[i];
+		}
+
+		for (int i = 0; i < lengde2; i++) {
+			nytabell[lengde1 + i] = tabell2[i];
+		}
+
+		return nytabell;	
 	}
 }
